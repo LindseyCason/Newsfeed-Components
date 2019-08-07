@@ -112,3 +112,81 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new artible
 
 */
+
+const container = document.querySelector('.articles');
+
+
+
+//new item test //
+data.push({
+  title: 'The Amazing Lindsey',
+    date: 'Feb 20th, 1985',
+    firstParagraph: `There once wa a girl who thought she loved code. She decided to embark on a journey to further her education and expand her horizons`,
+
+    secondParagraph: `She enrolled in Lambda school, a great source for learning, team work and networking all in the same spot!`,
+
+    thirdParagraph: `She enjoyed the people, the lessons and the challenging projects. But MOST of all, she loved the wine she was forced to drink at the end of the night to get her through the next day. 30 days in, T-268 days left!`
+})
+// //end new item info
+
+data.forEach(data => {
+  container.appendChild(createArticle(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph))
+})
+
+function createArticle(title, date, first, second, third){
+//define elements
+const article = document.createElement('div');
+const titles = document.createElement('h2');
+const dates =  document.createElement('p');
+const contentFirst = document.createElement('p');
+const contentSecond = document.createElement('p');
+const contentThird = document.createElement('p');
+const button = document.createElement('span');
+
+//setup structure
+
+article.appendChild(titles);
+article.appendChild(dates);
+article.appendChild(contentFirst);
+article.appendChild(contentSecond);
+article.appendChild(contentThird);
+article.appendChild(button);
+
+//setting class names
+
+article.classList.add('article');
+titles.classList.add('h2');
+dates.classList.add('date');
+contentFirst.classList.add('contentFirst');
+contentSecond.classList.add('contentSecond');
+contentThird.classList.add('contentThird');
+button.classList.add('expandButton');
+
+//set text content / img src
+
+titles.textContent = title;
+dates.textContent = date;
+contentFirst.textContent = first;
+contentSecond.textContent = second;
+contentThird.textContent = third;
+button.textContent = 'EXPAND';
+
+//eventlistener
+
+button.addEventListener('click', e =>{
+  article.classList.toggle('article-open');
+  let btn = article.classList;
+  btn.forEach(i =>{
+if(i ==='article-open'){
+    button.textContent = "CLOSE";
+  }else{
+    button.textContent = "EXPAND";
+  }
+  })
+  
+})
+
+return article;
+
+}
+
