@@ -34,7 +34,8 @@ let menuItems = [
   
 */
 
-const dropMenu = document.querySelector('.menu-button');
+  const dropMenu = document.querySelector('.header');
+  const hamburger = document.querySelector('.menu-button');
   const menu = document.createElement('div');
   const ul = document.createElement('ul');
   menu.appendChild(ul); 
@@ -57,7 +58,8 @@ function createMenu(item){
 
   return menu;
 }
-dropMenu.addEventListener('click', e =>{
+hamburger.addEventListener('click', e =>{
     menu.classList.toggle('menu--open');    
   }) 
-dropMenu.appendChild(menu);
+
+  dropMenu.appendChild(menu);
