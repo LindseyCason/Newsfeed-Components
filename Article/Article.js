@@ -190,3 +190,51 @@ return article;
 
 }
 
+
+
+
+
+//below is animation experimentation
+const html = document.querySelector('html');
+const picture = document.createElement('img');
+const pPic  = document.createElement('p');
+html.appendChild(pPic);
+html.appendChild(picture);
+picture.classList.add('picture');
+picture.src = "https://images.unsplash.com/photo-1533082546116-1dc948fc4be4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1534&q=80";
+pPic.textContent = "Click the Squid!";
+//styling
+pPic.style.textAlign = "center";
+pPic.style.color = "coral";
+pPic.style.fontWeight = "bolder";
+pPic.style.fontSize = "30px";
+//end styling
+TweenMax.to(document.getElementsByClassName("picture"), 4, {x:500});
+TweenMax.to(document.getElementsByClassName("picture"), 4, {y:100});
+
+picture.addEventListener('click', e =>{
+  picture.classList.toggle('animate1')
+  TweenMax.to(document.getElementsByClassName("animate1"), 4, {x:250});
+  TweenMax.to(document.getElementsByClassName("animate1"), 4, {y:-100});
+
+      picture.addEventListener('click', e =>{
+        picture.classList.toggle('animate2')
+          TweenMax.to(document.getElementsByClassName("animate2"), 4, {x:0});
+          TweenMax.to(document.getElementsByClassName("animate2"), 4, {y:100});
+          
+          picture.addEventListener('click', e =>{
+              picture.classList.toggle('animate3')
+              TweenMax.to(document.getElementsByClassName("animate3"), 4, {x:1000});
+              TweenMax.to(document.getElementsByClassName("animate3"), 4, {y:-550});
+
+              let bye = picture.classList;
+              bye.forEach(i =>{
+                if(i === 'animate3'){
+                  pPic.textContent="BYE SQUID!"
+
+                }
+              })
+
+          })
+      })
+})

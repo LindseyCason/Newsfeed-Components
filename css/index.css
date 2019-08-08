@@ -76,6 +76,11 @@
   margin: 0;
   font-size: 48px;
 }
+.picture {
+  height: 25%;
+  width: 25%;
+  border-radius: 30%;
+}
 .menu-button {
   position: absolute;
   left: 20px;
