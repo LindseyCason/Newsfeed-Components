@@ -112,3 +112,129 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new artible
 
 */
+
+const container = document.querySelector('.articles');
+
+
+
+//new item test //
+data.push({
+  title: 'The Amazing Lindsey',
+    date: 'Feb 20th, 1985',
+    firstParagraph: `There once wa a girl who thought she loved code. She decided to embark on a journey to further her education and expand her horizons`,
+
+    secondParagraph: `She enrolled in Lambda school, a great source for learning, team work and networking all in the same spot!`,
+
+    thirdParagraph: `She enjoyed the people, the lessons and the challenging projects. But MOST of all, she loved the wine she was forced to drink at the end of the night to get her through the next day. 30 days in, T-268 days left!`
+})
+// //end new item info
+
+data.forEach(data => {
+  container.appendChild(createArticle(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph))
+})
+
+function createArticle(title, date, first, second, third){
+//define elements
+const article = document.createElement('div');
+const titles = document.createElement('h2');
+const dates =  document.createElement('p');
+const contentFirst = document.createElement('p');
+const contentSecond = document.createElement('p');
+const contentThird = document.createElement('p');
+const button = document.createElement('span');
+
+//setup structure
+
+article.appendChild(titles);
+article.appendChild(dates);
+article.appendChild(contentFirst);
+article.appendChild(contentSecond);
+article.appendChild(contentThird);
+article.appendChild(button);
+
+//setting class names
+
+article.classList.add('article');
+titles.classList.add('h2');
+dates.classList.add('date');
+contentFirst.classList.add('contentFirst');
+contentSecond.classList.add('contentSecond');
+contentThird.classList.add('contentThird');
+button.classList.add('expandButton');
+
+//set text content / img src
+
+titles.textContent = title;
+dates.textContent = date;
+contentFirst.textContent = first;
+contentSecond.textContent = second;
+contentThird.textContent = third;
+button.textContent = 'EXPAND';
+
+//eventlistener
+
+button.addEventListener('click', e =>{
+  article.classList.toggle('article-open');
+  let btn = article.classList;
+  btn.forEach(i =>{
+if(i ==='article-open'){
+    button.textContent = "CLOSE";
+  }else{
+    button.textContent = "EXPAND";
+  }
+  })
+  
+})
+
+return article;
+
+}
+
+
+
+
+
+//below is animation experimentation
+const html = document.querySelector('html');
+const picture = document.createElement('img');
+const pPic  = document.createElement('p');
+html.appendChild(pPic);
+html.appendChild(picture);
+picture.classList.add('picture');
+picture.src = "https://images.unsplash.com/photo-1533082546116-1dc948fc4be4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1534&q=80";
+pPic.textContent = "Click the Squid!";
+//styling
+pPic.style.textAlign = "center";
+pPic.style.color = "coral";
+pPic.style.fontWeight = "bolder";
+pPic.style.fontSize = "30px";
+//end styling
+TweenMax.to(document.getElementsByClassName("picture"), 4, {x:500});
+TweenMax.to(document.getElementsByClassName("picture"), 4, {y:100});
+
+picture.addEventListener('click', e =>{
+  picture.classList.toggle('animate1')
+  TweenMax.to(document.getElementsByClassName("animate1"), 4, {x:250});
+  TweenMax.to(document.getElementsByClassName("animate1"), 4, {y:-100});
+
+      picture.addEventListener('click', e =>{
+        picture.classList.toggle('animate2')
+          TweenMax.to(document.getElementsByClassName("animate2"), 4, {x:0});
+          TweenMax.to(document.getElementsByClassName("animate2"), 4, {y:100});
+          
+          picture.addEventListener('click', e =>{
+              picture.classList.toggle('animate3')
+              TweenMax.to(document.getElementsByClassName("animate3"), 4, {x:1000});
+              TweenMax.to(document.getElementsByClassName("animate3"), 4, {y:-550});
+
+              let bye = picture.classList;
+              bye.forEach(i =>{
+                if(i === 'animate3'){
+                  pPic.textContent="BYE SQUID!"
+
+                }
+              })
+
+          })
+      })
+})
